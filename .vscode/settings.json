@@ -1,0 +1,37 @@
+{
+    "cmake.configureOnOpen": false,
+    "cmake.showOptionsMovedNotification": false,
+    "cmake.automaticReconfigure": false,
+    "cmake.configureOnEdit": false,
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "cmake.showConfigureWithDebuggerNotification": false,
+    "cmake.touchbar.visibility": "hidden",
+    "C_Cpp.errorSquiggles": "disabled",
+    "C_Cpp.intelliSenseEngineFallback": "disabled",
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "[cpp]": {
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    },
+    "clangd.path": "clangd",  // You may need to change this to clangd-20 etc.
+    "clangd.arguments": [
+        "--compile-commands-dir=${workspaceFolder}/build",
+        "--log=verbose",
+        "--pretty",
+        "--clang-tidy",
+        "--all-scopes-completion",
+        "--completion-style=bundled",
+        "--cross-file-rename",
+        "--header-insertion=never",
+        "--background-index",
+        "-j=12",
+        "--pch-storage=memory",
+        "--function-arg-placeholders=false",
+    ],
+    "black-formatter.args": [
+        "--line-length=79"
+    ]
+}

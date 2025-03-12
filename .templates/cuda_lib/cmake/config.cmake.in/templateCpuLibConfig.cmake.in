@@ -1,0 +1,6 @@
+@PACKAGE_INIT@
+
+include(CmakeFindDependencyMacro)
+include(${CMAKE_CURRENT_LIST_DIR}/_template_project_name_Targets.cmake)
+
+check_required_components(_template_project_name_)
