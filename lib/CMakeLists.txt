@@ -1,4 +1,4 @@
-set(LIB_NAME "templateCpuLib")
+set(LIB_NAME "GrafixCore")
 
 file(GLOB_RECURSE CXX_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 
@@ -14,6 +14,18 @@ target_include_directories(
 target_compile_definitions(${LIB_NAME} 
     PRIVATE $<$<BOOL:${BUILD_SHARED_LIBS}>:grafixboard_EXPORT>
     INTERFACE $<$<BOOL:${BUILD_SHARED_LIBS}>:grafixboard_IMPORT>
+)
+
+target_link_libraries(
+    ${LIB_NAME} 
+    PUBLIC
+    ${Vulkan_LIBRARIES}
+    glfw
+    msft_proxy
+    spdlog::spdlog
+    cxxopts::cxxopts
+    EnTT::EnTT
+    imgui::imgui
 )
 
 # @see "cmake/utils/lib-install.cmake"
