@@ -1,7 +1,7 @@
 #include <array>
 #include <iostream>
 
-#include <grafixboard/math/vec_add.hpp>
+#include <grafixcore/math/vec_add.hpp>
 
 auto main() -> int
 {
@@ -21,8 +21,7 @@ auto main() -> int
 
     std::cout << __cplusplus << "\n";
 
-    grafixboard::launch_vec_add(a.data(), b.data(), c.data(),
-                                            int(a.size()));
+    grafixboard::launchVecAdd(a.data(), b.data(), c.data(), int(a.size()));
     printVec(c);
 
     return 0;

@@ -16,6 +16,11 @@ target_compile_definitions(${LIB_NAME}
     INTERFACE $<$<BOOL:${BUILD_SHARED_LIBS}>:GRAFIXCORE_IMPORT>
 )
 
+target_precompile_headers(
+    ${LIB_NAME} PUBLIC 
+    ${PROJECT_SOURCE_DIR}/include/grafixcore/pch.hpp
+)
+
 target_link_libraries(
     ${LIB_NAME} 
     PUBLIC

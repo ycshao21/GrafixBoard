@@ -1,14 +1,15 @@
+#include "grafixcore/pch.hpp"
+
 #include <cstdint>
 #include <cstdio>
 
-#include "grafixboard/math/vec_add.hpp"
-#include "grafixboard/utils/address.hpp"
+#include "grafixcore/math/vec_add.hpp"
+#include "grafixcore/utils/address.hpp"
 
 namespace grafixboard
 {
 
-void launch_vec_add(const float* const a, const float* const b, float* const c,
-                    const int n)
+void launchVecAdd(const float* a, const float* b, float* c, const int n)
 {
     ::printf("Hello World from CPU!\n");
     ::printf("Vector size: %d\n", n);

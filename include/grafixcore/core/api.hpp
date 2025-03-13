@@ -10,8 +10,7 @@
     #endif
 #else
     #if defined(GRAFIXCORE_EXPORT)
-        #define GRAFIXCORE_API                                    \
-            __attribute__((visibility("default")))
+        #define GRAFIXCORE_API __attribute__((visibility("default")))
     #else
         #define GRAFIXCORE_API
     #endif
