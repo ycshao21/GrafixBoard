@@ -12,8 +12,8 @@ target_include_directories(
 )
 
 target_compile_definitions(${LIB_NAME} 
-    PRIVATE $<$<BOOL:${BUILD_SHARED_LIBS}>:grafixboard_EXPORT>
-    INTERFACE $<$<BOOL:${BUILD_SHARED_LIBS}>:grafixboard_IMPORT>
+    PRIVATE $<$<BOOL:${BUILD_SHARED_LIBS}>:GRAFIXCORE_EXPORT>
+    INTERFACE $<$<BOOL:${BUILD_SHARED_LIBS}>:GRAFIXCORE_IMPORT>
 )
 
 target_link_libraries(
