@@ -10,7 +10,7 @@
     #include <utility>
 #endif
 
-namespace grafixboard
+namespace grafix
 {
 /**
  * @brief Compute the offset of a multi-dimensional array.
@@ -48,4 +48,4 @@ constexpr auto computeOffset(ArgsT... args) -> OffsetT
     return offset;
 }
 
-}  // namespace grafixboard
+}  // namespace grafix

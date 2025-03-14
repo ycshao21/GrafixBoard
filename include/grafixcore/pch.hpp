@@ -14,6 +14,7 @@
 #include <tuple>
 #include <unordered_map>
 #include <vector>
+#include <memory>
 
 #include <proxy/proxy.h>
 #include <spdlog/sinks/stdout_color_sinks.h>

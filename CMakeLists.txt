@@ -14,7 +14,7 @@ set(CMAKE_EXECUTABLE_SUFFIX ".exe")
 set_default_values(
     # CMake project namespace:
     # All the libs should have a alias with this namespace
-    PROJECT_NAMESPACE "grafixboard::"
+    PROJECT_NAMESPACE "GRAFIX::"
 )
 
 # Utility functions for installing libraries:

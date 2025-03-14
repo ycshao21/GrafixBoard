@@ -1,28 +1,11 @@
-#pragma once
-#include "grafixcore/algorithm/attributes.hpp"
-#include "grafixcore/common/cxxtypes.hpp"
-#include "grafixcore/math/random.hpp"
+#include "grafixcore/algorithm/bsplinecurve.hpp"
+#include "grafixcore/pch.hpp"
 
-namespace grafixboard::algo
+namespace grafix::algo
 {
-
-class BSplineCurve
+class BSplineCurve::Impl
 {
-    using Point = std::array<fp32_t, 2>;
-
 public:
-    explicit BSplineCurve() = default;
-    ~BSplineCurve() = default;
-
-    /**
-     * @brief Set the control points of the BSplineCurve.
-     *
-     * @param bytes Parameters in bytes.
-     *        1. uint32_t -> Number of control points.
-     *        2. fp32_t[num] -> Control points.
-     *        3. uint32_t -> Order of the BSplineCurve.
-     *        4. std::function<void(const Point&)> -> Put point function.
-     */
     void setParams(const std::vector<std::byte>& bytes)
     {
         const auto* dataPtr = bytes.data();
@@ -65,7 +48,6 @@ public:
         }
     }
 
-private:
     void generateKnots()
     {
         size_t num = m_ctrlPoints.size() + m_order;
@@ -79,7 +61,7 @@ private:
             for (size_t i = m_order; i < num - m_order; ++i) {
                 // Make sure `m_knots[m_order:num-m_order-1]` is strictly
                 // increasing
-                float r = grafixboard::RandUniform<float>::generate(
+                float r = RandUniform<float>::generate(
                               std::numeric_limits<float>::epsilon() * 2.0F,
                               1.0F - m_knots[i - 1]) *
                           0.5;
@@ -95,7 +77,7 @@ private:
             m_weights.clear();
             m_weights.resize(num);
             for (auto& w : m_weights) {
-                w = grafixboard::RandUniform<float>::generate(15.F, 25.F);
+                w = RandUniform<float>::generate(15.F, 25.F);
             }
             float sum =
                 std::accumulate(m_weights.begin(), m_weights.end(), 0.0F);
@@ -123,6 +105,7 @@ private:
                b * basicFunction(i + 1ULL, order - 1, t, knots);
     }
 
+private:
     // Parameters for BSplineCurve
     uint32_t m_numCtrlPoints = 0;
     std::vector<Point> m_ctrlPoints;
@@ -132,7 +115,27 @@ private:
 
     std::vector<float> m_weights;
     mutable std::vector<float> m_knots;
-    RandUniform<fp32_t> m_randGen;
 };
 
-}  // namespace grafixboard::algo
+BSplineCurve::BSplineCurve() : pImpl(std::make_unique<Impl>()) {};
+
+BSplineCurve::~BSplineCurve() = default;
+
+BSplineCurve::BSplineCurve(const BSplineCurve& other)
+    : pImpl(std::make_unique<Impl>(*other.pImpl))
+{
+}
+
+BSplineCurve::BSplineCurve(BSplineCurve&& other) noexcept = default;
+
+void BSplineCurve::setParams(const std::vector<std::byte>& bytes)
+{
+    pImpl->setParams(bytes);
+}
+
+void BSplineCurve::draw()
+{
+    pImpl->draw();
+}
+
+}  // namespace grafix::algo

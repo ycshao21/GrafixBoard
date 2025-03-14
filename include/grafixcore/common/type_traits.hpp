@@ -5,7 +5,7 @@
 #include <string_view>
 #include <tuple>
 
-namespace grafixboard::type_traits
+namespace grafix::type_traits
 {
 
 template <typename T>
@@ -54,4 +54,4 @@ constexpr auto typeName() -> std::string_view
     return name;
 }
 
-}  // namespace grafixboard::type_traits
+}  // namespace grafix::type_traits

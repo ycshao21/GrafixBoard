@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-namespace grafixboard
+namespace grafix
 {
 using int8_t = ::std::int8_t;
 static_assert(sizeof(int8_t) == 1);
@@ -29,4 +29,4 @@ using fp32_t = float;
 static_assert(sizeof(fp32_t) == 4);
 using fp64_t = double;
 static_assert(sizeof(fp64_t) == 8);
-}  // namespace grafixboard
+}  // namespace grafix

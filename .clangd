@@ -52,6 +52,6 @@ Diagnostics:
       readability-identifier-naming.NamespaceCase: lower_case
       readability-identifier-naming.EnumCase: camelBack
       readability-identifier-naming.ClassCase: CamelCase
-      readability-identifier-naming.StructCase: CamelCase
-      readability-identifier-naming.FunctionCase: camelBack
-      readability-identifier-naming.ClassMethodCase: camelBack
+      readability-identifier-naming.StructCase: aNy_CasE
+      readability-identifier-naming.FunctionCase: aNy_CasE
+      readability-identifier-naming.ClassMethodCase: aNy_CasE

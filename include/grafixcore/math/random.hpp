@@ -13,14 +13,14 @@
 
 #include "grafixcore/common/type_traits.hpp"
 
-namespace grafixboard
+namespace grafix
 {
 
 template <class Derived>
 class RandBase
 {
 public:
-    using ValTy = grafixboard::type_traits::GetInnerType_t<Derived>;
+    using ValTy = grafix::type_traits::GetInnerType_t<Derived>;
 
     explicit RandBase() = default;
     auto operator=(const RandBase&) -> RandBase& = delete;
@@ -28,13 +28,13 @@ public:
     template <typename... Args>
     static void setParams(Args&&... args)
     {
-        Derived::setParamsImpl(std::forward<Args>(args)...);
+        Derived::__setParamsImpl(std::forward<Args>(args)...);
     }
 
     template <typename... Args>
     static auto generate(Args&&... args) -> ValTy
     {
-        return Derived::generateImpl(std::forward<Args>(args)...);
+        return Derived::__generateImpl(std::forward<Args>(args)...);
     }
 
     template <typename... Args>
@@ -56,7 +56,7 @@ public:
     explicit RandUniform() = default;
     auto operator()(const RandUniform&) -> RandUniform& = delete;
 
-    static void setParamsImpl(double min, double max)
+    static void __setParamsImpl(double min, double max)
     {
         if (m_distribution->min() != min || m_distribution->max() != max) {
             m_distribution =
@@ -65,14 +65,14 @@ public:
         }
     }
 
-    static auto generateImpl() -> _ValTy
+    static auto __generateImpl() -> _ValTy
     {
         return static_cast<_ValTy>(m_distribution->operator()(m_engine));
     }
 
-    static auto generateImpl(double min, double max) -> _ValTy
+    static auto __generateImpl(double min, double max) -> _ValTy
     {
-        setParamsImpl(min, max);
+        __setParamsImpl(min, max);
         return static_cast<_ValTy>(m_distribution->operator()(m_engine));
     }
 
@@ -85,7 +85,7 @@ private:
 
 template <class _ValTy>
     requires std::is_arithmetic_v<_ValTy>
-std::random_device grafixboard::RandUniform<_ValTy>::m_rd{};
+std::random_device grafix::RandUniform<_ValTy>::m_rd{};
 
 template <class _ValTy>
     requires std::is_arithmetic_v<_ValTy>
@@ -105,7 +105,7 @@ public:
     explicit RandNormal() = default;
     auto operator()(const RandNormal&) -> RandNormal& = delete;
 
-    static void setParamsImpl(double mean, double stddev)
+    static void __setParamsImpl(double mean, double stddev)
     {
         if (m_distribution->mean() != mean ||
             m_distribution->stddev() != stddev) {
@@ -114,14 +114,14 @@ public:
         }
     }
 
-    static auto generateImpl() -> _ValTy
+    static auto __generateImpl() -> _ValTy
     {
         return static_cast<_ValTy>(m_distribution->operator()(m_engine));
     }
 
-    static auto generateImpl(double mean, double stddev) -> _ValTy
+    static auto __generateImpl(double mean, double stddev) -> _ValTy
     {
-        setParamsImpl(mean, stddev);
+        __setParamsImpl(mean, stddev);
         return static_cast<_ValTy>(m_distribution->operator()(m_engine));
     }
 
@@ -218,7 +218,7 @@ public:
 
 private:
     std::shared_ptr<spdlog::logger> m_logger =
-        spdlog::stdout_color_mt("grafixboard::DistributionVisualizer");
+        spdlog::stdout_color_mt("grafix::DistributionVisualizer");
 };
 
-}  // namespace grafixboard
+}  // namespace grafix
