@@ -4,6 +4,7 @@ CompileFlags:
     - -Wextra
     - -Werror
   Remove:
+    - -fconcepts-diagnostics-depth=*
     - -ccbin
     - -forward-unknown-to-host-compiler
     - -rdc=true

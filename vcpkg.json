@@ -6,6 +6,7 @@
         "spdlog",
         "glfw3",
         "imgui",
-        "entt"
+        "entt",
+        "stdexec"
     ]
 }

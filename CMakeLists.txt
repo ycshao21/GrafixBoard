@@ -33,6 +33,8 @@ find_package(glfw3   CONFIG REQUIRED)
 find_package(imgui   CONFIG REQUIRED)
 find_package(spdlog  CONFIG REQUIRED)
 find_package(proxy   CONFIG REQUIRED)
+find_package(stdexec CONFIG REQUIRED)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/lib)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src)
+add_subdirectory(${PROJECT_SOURCE_DIR}/examples)
