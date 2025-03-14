@@ -1,6 +1,7 @@
 #include <array>
 #include <iostream>
 
+#include <grafixcore/algorithm/bsplincurve.hpp>
 #include <grafixcore/math/vec_add.hpp>
 
 auto main() -> int
@@ -24,5 +25,9 @@ auto main() -> int
     grafixboard::launchVecAdd(a.data(), b.data(), c.data(), int(a.size()));
     printVec(c);
 
+    auto proxy = pro::make_proxy<grafixboard::algo::Drawable,
+                                 grafixboard::algo::BSplineCurve>();
+
+    proxy->draw();
     return 0;
 }

@@ -19,5 +19,5 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
 
-#include "grafixcore/core/api.hpp"
-#include "grafixcore/core/cxxtypes.hpp"
+#include "grafixcore/common/api.hpp"
+#include "grafixcore/common/cxxtypes.hpp"

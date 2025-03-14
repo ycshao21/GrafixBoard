@@ -1,6 +1,6 @@
 #pragma once
 
-#include "grafixcore/core/api.hpp"
+#include "grafixcore/common/api.hpp"
 
 namespace grafixboard
 {
