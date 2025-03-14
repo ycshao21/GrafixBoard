@@ -52,7 +52,7 @@ auto stdexecTest() -> int
     auto threadPool =
         exec::static_thread_pool(std::thread::hardware_concurrency());
     auto sched = threadPool.get_scheduler();
-    (void)sched;
+    (void) sched;
 
     // I dont know how to submit tasks to ::exec thread pool.
 
