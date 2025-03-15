@@ -1,10 +1,6 @@
----
-name: 💡 Add New Features
-about: Pull request to add new features
-title: "[FEATURE] " 
-labels: enhancement
-assignees: ''
----
+<!--
+⚠️ Your PR title should be in the format of "[FEATURE] ...".
+-->
 
 ## 1. Feature Description
 

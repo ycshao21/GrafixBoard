@@ -1,10 +1,6 @@
----
-name: 📚 Documentation
-about: Pull request to update documentations
-title: "[DOC] "
-labels: documentation
-assignees: ''
----
+<!--
+⚠️ Your PR title should be in the format of "[DOC] ...".
+-->
 
 ## 1. Modifications
 

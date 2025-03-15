@@ -1,10 +1,6 @@
----
-name: 🐛 Bug Report
-about: Pull request to fix a bug
-title: "[FIX] "
-labels: fix
-assignees: ''
----
+<!--
+️️️⚠️ Your PR title should be in the format of "[FIX] ...".
+-->
 
 ## 1. Bug Description
 
