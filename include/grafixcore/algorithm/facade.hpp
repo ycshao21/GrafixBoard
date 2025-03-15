@@ -1,6 +1,7 @@
 #pragma once
 
-#include <grafixcore/common/type_traits.hpp>
+#include "grafixcore/common/common.hpp"
+#include "grafixcore/utils/bytestream.hpp"
 #include <proxy/proxy.h>
 
 namespace grafix::algo
@@ -39,7 +40,7 @@ public:
 struct Drawable
     : pro::facade_builder
     ::add_convention<AlgoMemDraw, void()>
-    ::add_convention<AlgoMemSetParams, void(const std::vector<std::byte>&)>
+    ::add_convention<AlgoMemSetParams, void(const ByteStream&)>
     ::add_reflection<AlgoReflector>
     ::add_indirect_reflection<AlgoReflector>
     ::build
