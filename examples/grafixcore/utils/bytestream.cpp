@@ -32,7 +32,7 @@ auto main() -> int
 
     logParams(bytes);
     bytes.resetOffset();
-    
+
     auto proxy =
         pro::make_proxy<grafix::algo::Drawable, grafix::algo::BSplineCurve>();
 
