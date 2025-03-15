@@ -9,12 +9,12 @@ class BSplineCurve::Impl
 public:
     void setParams(const ByteStream& bytes)
     {
-        m_numCtrlPoints = bytes.read<uint32_t>();
-        m_ctrlPoints.resize(m_numCtrlPoints);
-        bytes.read(m_ctrlPoints.data(), m_numCtrlPoints);
+        m_nCtrlPoints = bytes.read<uint32_t>();
+        m_ctrlPoints.reserve(m_nCtrlPoints);
+        bytes.read(m_ctrlPoints.data(), m_nCtrlPoints);
         m_order = bytes.read<uint32_t>();
-        // [BUG] This might be wrong. Maybe we should use a function pointer?
-        m_putPointFunc = bytes.read<std::function<void(const Point&)>>();
+        // // [BUG] This might be wrong. Maybe we should use a function pointer?
+        // m_putPointFunc = bytes.read<std::function<void(const Point&)>>();
 
         generateKnots();
         generateWeights();
@@ -42,15 +42,15 @@ public:
 
     void generateKnots()
     {
-        size_t num = m_ctrlPoints.size() + m_order;
-        if (m_knots.size() != num) {
+        int64_t num = m_ctrlPoints.size() + m_order;
+        if (int64_t(m_knots.size()) != num) {
             m_knots.clear();
             // Generate a new random knot vector
             m_knots.resize(num, 0.0F);
-            for (size_t i = num - 1; i >= num - m_order; --i) {
+            for (int64_t i = num - 1; i >= num - m_order; --i) {
                 m_knots.at(i) = 1;
             }
-            for (size_t i = m_order; i < num - m_order; ++i) {
+            for (int64_t i = m_order; i < num - m_order; ++i) {
                 // Make sure `m_knots[m_order:num-m_order-1]` is strictly
                 // increasing
                 auto r = RandUniform<fp32_t>::generate(
@@ -99,7 +99,7 @@ public:
 
 private:
     // Parameters for BSplineCurve
-    uint32_t m_numCtrlPoints = 0;
+    uint32_t m_nCtrlPoints = 0ULL;
     std::vector<Point> m_ctrlPoints;
     uint32_t m_order = 3ULL;
     fp32_t m_drawStep = 1e-4F;

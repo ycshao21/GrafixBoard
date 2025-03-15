@@ -13,9 +13,9 @@ namespace grafix::algo
  */
 class BSplineCurve
 {
+public:
     using Point = std::array<fp32_t, 2>;
 
-public:
     explicit BSplineCurve();
     ~BSplineCurve();
     BSplineCurve(const BSplineCurve&);

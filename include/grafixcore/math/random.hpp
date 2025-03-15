@@ -38,11 +38,12 @@ public:
     }
 
     template <typename... Args>
-    auto generateVec(std::size_t size, Args&&... args) -> std::vector<ValTy>
+    static auto generateVec(std::size_t size, Args&&... args)
+        -> std::vector<ValTy>
     {
         std::vector<ValTy> vec;
         while ((size--) != 0U) {
-            vec.push_back(this->generate(std::forward<Args>(args)...));
+            vec.push_back(Derived::__generateImpl(std::forward<Args>(args)...));
         }
         return vec;
     }
