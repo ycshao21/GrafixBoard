@@ -17,8 +17,6 @@
 #include <vector>
 
 #include <proxy/proxy.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
-#include <spdlog/spdlog.h>
 
 #include "grafixcore/common/api.hpp"
 #include "grafixcore/common/cxxtypes.hpp"
