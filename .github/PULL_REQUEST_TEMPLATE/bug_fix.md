@@ -47,16 +47,18 @@ Reproduction steps are already described in #123.
 <!--
 For example:
 
-| Software             | Version        |
-| -------------------- | -------------- |
-| OS / Docker Image    | Windows 11     |
-| Tex                  | TexLive 2024   |
+| Software             | Version               |
+| -------------------- | --------------------- |
+| OS / Docker Image    | nvidia/cuda:latest    |
+| Compiler             | g++ 13.3.0; cuda 12.6 |
+| Other Softwares      |                       |
 -->
 
-| Software             | Version        |
-| -------------------- | -------------- |
-| OS / Docker Image    |                |
-| Tex                  |                |
+| Software             | Version |
+| -------------------- | ------- |
+| OS / Docker Image    |         |
+| Compiler             |         |
+| Other Softwares      |         |
 
 ### 5.2. Steps to Test
 
