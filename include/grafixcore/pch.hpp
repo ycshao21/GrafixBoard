@@ -5,7 +5,9 @@
 #include <cstddef>
 
 #include <algorithm>
+#include <array>
 #include <concepts>
+#include <cstring>
 #include <map>
 #include <memory>
 #include <numeric>
