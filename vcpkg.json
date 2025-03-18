@@ -9,10 +9,12 @@
             "name": "imgui",
             "features": [
                 "vulkan-binding",
-                "glfw-binding"
+                "glfw-binding",
+                "docking-experimental"
             ]
         },
         "entt",
-        "stdexec"
+        "stdexec",
+        "glm"
     ]
 }

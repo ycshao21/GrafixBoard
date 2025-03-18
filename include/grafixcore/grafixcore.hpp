@@ -3,7 +3,7 @@
 #include "grafixcore/core/application.hpp"
 #include "grafixcore/core/layer.hpp"
 
-#include "grafixcore/core/log.hpp"
+#include "grafixcore/utils/log.hpp"
 
 // #include "Grafix/Events/Event.h"
 // #include "Grafix/Events/ApplicationEvent.h"

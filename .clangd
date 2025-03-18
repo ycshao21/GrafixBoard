@@ -42,6 +42,7 @@ Diagnostics:
       readability-function-cognitive-complexity,
       modernize-avoid-c-arrays,
       readability-math-missing-parentheses,
+      readability-uppercase-literal-suffix,
     ]
 
     CheckOptions:
@@ -50,7 +51,7 @@ Diagnostics:
       readability-identifier-naming.PrivateMemberCase: aNy_CasE
       readability-identifier-naming.PublicMemberCase: aNy_CasE
       readability-identifier-naming.NamespaceCase: lower_case
-      readability-identifier-naming.EnumCase: camelBack
+      readability-identifier-naming.EnumCase: aNy_CasE
       readability-identifier-naming.ClassCase: CamelCase
       readability-identifier-naming.StructCase: aNy_CasE
       readability-identifier-naming.FunctionCase: aNy_CasE

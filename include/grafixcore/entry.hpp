@@ -1,16 +1,16 @@
 #pragma once
 
 #include "core/application.hpp"
-#include "core/log.hpp"
+#include "utils/log.hpp"
 
 namespace grafix
 {
-inline auto grafix_main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
+inline auto grafixMain([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
     -> int
 {
     Log::init();
 
-    Application* app = create_application();
+    Application* app = createApplication();
     app->run();
     delete app;
 
@@ -21,5 +21,5 @@ inline auto grafix_main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 
 auto main(int argc, char** argv) -> int
 {
-    return grafix::grafix_main(argc, argv);
+    return grafix::grafixMain(argc, argv);
 }
