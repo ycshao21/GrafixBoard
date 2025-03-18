@@ -36,3 +36,6 @@ build
 
 # Clangd Cache
 .cache
+
+# ImGui
+imgui.ini

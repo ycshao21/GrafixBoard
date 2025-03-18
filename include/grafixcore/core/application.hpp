@@ -1,17 +1,15 @@
 #pragma once
 
-// #include <vulkan/vulkan.h>
-
-// #include "Window.h"
-
-// #include "Grafix/Events/ApplicationEvent.h"
-// #include "Grafix/ImGui/ImGuiLayer.h"
-
-// #include "Grafix/Utils/Stopwatch.h"
-
 #include <functional>
 #include <memory>
 #include <string>
+
+#include <imgui_impl_vulkan.h>
+#include <vulkan/vulkan.h>
+
+#include "grafixcore/ui/ui_layer.hpp"
+#include "platform.hpp"
+#include "window.hpp"
 
 namespace grafix
 {
@@ -20,8 +18,8 @@ struct ApplicationConfig
     std::string name = "GrafixBoard";
     uint32_t width = 1280;
     uint32_t height = 720;
-    // RendererAPI renderer_api = RendererAPI::Vulkan;
-    float target_frame_rate = 60.0F;
+    // RendererAPI rendererAPI = RendererAPI::Vulkan;
+    float targetFrameRate = 60.0f;
 };
 
 class Application
@@ -32,26 +30,24 @@ public:
 
     void run();
 
-    void close()
+    [[nodiscard]] auto isMinimized() const -> bool
     {
-        m_running = false;
+        return m_state.isMinimized;
     }
 
-    static auto get() -> Application&
+    static auto get() -> Application&;
+
+    auto getWindow() -> Window&
     {
-        return *s_instance;
+        return *m_window;
+    }
+    auto getImGuiLayer() -> ImGuiLayer*
+    {
+        return m_imguiLayer;
     }
 
-    // void OnEvent(Event& e);
-
-    // Window
-    // inline Window& GetWindow() { return *m_Window; }
-    // inline const Window& GetWindow() const { return *m_Window; }
-
-    //     void PushLayer(Layer* layer);
-
-    //     inline bool IsMinimized() { return m_Minimized; }
-    //     inline ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
+    void pushLayer(Layer* layer);
+    void onEvent(Event& e);
 
     //     // Vulkan
     //     static VkInstance GetInstance();
@@ -61,37 +57,38 @@ public:
     //     static VkCommandBuffer GetCommandBuffer();
     //     static void FlushCommandBuffer(VkCommandBuffer commandBuffer);
     //     static void SubmitResourceFree(std::function<void()>&& func);
-    // private:
-    //     bool OnWindowClose(WindowCloseEvent& e);
-    //     bool OnWindowResize(WindowResizeEvent& e);
-    //
-    //     // Vulkan
-    //     void InitVulkan();
-    //     void CleanupVulkan();
-
-    //     void CreateVkInstance();
-    //     void SelectPhysicalDevice();
-    //     void SelectGraphicsQueueFamily();
-    //     void CreateLogicalDevice();
-    //     void CreateWindowSurface();
-    //     void CreateDescriptorPool();
-    //     void CreateFramebuffers();
 private:
-    inline static Application* s_instance = nullptr;
+    auto onWindowClose(WindowCloseEvent& e) -> bool;
+    auto onWindowResize(WindowResizeEvent& e) -> bool;
 
-    bool m_running = true;
-    bool m_minimized = false;
+    // Vulkan
+    void setupVulkan();
+    void setupVulkanWindow(ImGui_ImplVulkanH_Window* wd, VkSurfaceKHR surface,
+                           int width, int height);
+    void cleanupVulkan();
 
-    //     std::unique_ptr<Window> m_Window;
+    static void createVkInstance();
+    static void createLogicalDevice();
+    static void createDescriptorPool();
 
-    //     std::vector<Layer*> m_LayerStack;
-    //     ImGuiLayer* m_ImGuiLayer;
+    struct ApplicationState
+    {
+        bool isRunning = true;
+        bool isMinimized = false;
+        bool isFrameRateLimited = false;
+    } m_state;
 
-    float m_last_frame_time = 0.0F;
-    float m_delta_time = 0.0F;
+    float m_lastTime = 0.0f;
+    float m_deltaTime = 0.0f;
+    float m_targetFrameTime = 1.0f / 60.0f;
+
+    std::unique_ptr<Window> m_window = nullptr;
+
+    std::vector<Layer*> m_layerStack;
+    ImGuiLayer* m_imguiLayer;
 };
 
 // Define the function in your own application.
-auto create_application() -> Application*;
+auto createApplication() -> Application*;
 
 }  // namespace grafix

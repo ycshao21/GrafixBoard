@@ -1,9 +1,8 @@
 #pragma once
 
-// #include "Grafix/Events/Event.h"
-
 #include <string>
-#include <utility>
+
+#include "event.hpp"
 
 namespace grafix
 {
@@ -15,31 +14,30 @@ public:
     }
     virtual ~Layer() = default;
 
-    [[nodiscard]] auto get_name() const -> const std::string&
+    [[nodiscard]] auto getName() const -> const std::string&
     {
         return m_name;
     }
 
-    virtual void on_attach()
+    virtual void onAttach()
     {
     }
 
-    virtual void on_detach()
+    virtual void onDetach()
     {
     }
 
-    virtual void on_update(float delta_time)
-    {
-        (void) delta_time;
-    }
-
-    virtual void on_ui_render()
+    virtual void onUpdate([[maybe_unused]] float delta_time)
     {
     }
 
-    // virtual void on_event(Event& e)
-    // {
-    // }
+    virtual void onUIRender()
+    {
+    }
+
+    virtual void onEvent([[maybe_unused]] Event& e)
+    {
+    }
 
 protected:
     std::string m_name;
