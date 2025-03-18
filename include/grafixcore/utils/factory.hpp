@@ -1,6 +1,6 @@
+#include <functional>
 #include <memory>
 #include <mutex>
-#include <functional>
 #include <shared_mutex>
 
 namespace grafix
