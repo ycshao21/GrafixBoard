@@ -14,7 +14,7 @@
             ]
         },
         "entt",
-        "stdexec",
-        "glm"
+        "glm",
+        "vulkan"
     ]
 }
