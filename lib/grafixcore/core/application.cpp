@@ -4,7 +4,6 @@
 #include <GLFW/glfw3.h>
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
-#include <vulkan/vk_enum_string_helper.h>
 
 #include "grafixcore/core/application.hpp"
 #include "grafixcore/core/assert.hpp"

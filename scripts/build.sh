@@ -34,8 +34,8 @@ while [[ $# -gt 0 ]]; do
             SOURCE_DIR=$2; shift ;;
         -B|--build-dir)
             BUILD_DIR=$2; shift ;;
-        Release|Debug)
-            BUILD_TYPE=$1 ;;
+        Release|Debug|RD|RelWithDebInfo)
+            BUILD_TYPE=${1/RD/RelWithDebInfo} ;;
         --stdc++=*)
             CXX_STANDARD="${1#*=}" ;;
         --shared)
@@ -54,6 +54,8 @@ done
 
 cmake -G Ninja -S $SOURCE_DIR -B $BUILD_DIR \
     -DCMAKE_TOOLCHAIN_FILE=$CMAKE_TOOL_CHAIN_FILE \
+    -DVCPKG_OVERLAY_TRIPLETS="cmake/vcpkg-triplets" \
+    -DVCPKG_TARGET_TRIPLET="x64-linux" \
     -DSTDOUT_IS_TERMINAL=$STDOUT_IS_TERMINAL \
     -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
     -DCMAKE_CXX_STANDARD=$CXX_STANDARD \

@@ -24,7 +24,7 @@ target_precompile_headers(
 target_link_libraries(
     ${LIB_NAME} 
     PUBLIC
-    ${Vulkan_LIBRARIES}
+    Vulkan::Vulkan
     glfw
     msft_proxy
     spdlog::spdlog

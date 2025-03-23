@@ -23,17 +23,14 @@ include(${PROJECT_SOURCE_DIR}/cmake/utils/lib-install.cmake)
 # Compiler configurations for cpp, e.g., g++, clang++, msvc(cl), etc.:
 include(${PROJECT_SOURCE_DIR}/cmake/compilers/cxx-compiler-configs.cmake)
 
-# Find Vulkan libraries:
-include(${PROJECT_SOURCE_DIR}/cmake/libraries/libvulkan.cmake)
-
-# Other libraries managed by VCPKG
+# Libraries managed by vcpkg:
+find_package(Vulkan  REQUIRED)
 find_package(cxxopts CONFIG REQUIRED)
 find_package(EnTT    CONFIG REQUIRED)
 find_package(glfw3   CONFIG REQUIRED)
 find_package(imgui   CONFIG REQUIRED)
 find_package(spdlog  CONFIG REQUIRED)
 find_package(proxy   CONFIG REQUIRED)
-find_package(stdexec CONFIG REQUIRED)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/lib)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src)
