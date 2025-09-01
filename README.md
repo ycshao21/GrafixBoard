@@ -3,6 +3,20 @@ A Template of Cross-Platform CMake-C++ Project for Visual Studio Code with Githu
 
 ## 1. Environment Setup
 
+To run on Windows:
+
+1. Install Visual Studio 2022 with the Desktop development with C++ workload.
+2. To build, run the following command on powershell:
+   ```pwsh
+   .\scripts\msvc-bash.bat .\scripts\build.sh
+   ```
+3. To run:
+  ```pwsh
+  build\src\GrafixBoard.exe
+  ```
+
+To build & run on Linux:
+
 ```bash
 IMAGE_NAME=jamesnulliu/grafixboard:vulkan1.4.304-torch2.6-cuda12.6-ubuntu24.04
 CONTAINER_NAME=whatever-you-like
@@ -22,19 +36,4 @@ docker exec -it ${CONTAINER_NAME} /bin/bash
 # [TODO] @jamesnulliu: 
 #     This command should be done when building the image, not by users.
 apt install -y libxinerama-dev libxcursor-dev xorg-dev libglu1-mesa-dev pkg-config
-```
-
-## 2. How to Use this Template
-### 2.1. Build 
-
-After generation, build the project by:
-
-```bash
-bash ./scripts/build.sh
-```
-
-If you are using windows and want to use MSVC deliberately, run the following command in Powershell or CMD to build:
-
-```pwsh
-.\scripts\msvc-bash.bat .\scripts\build.sh --prune-env-path
 ```

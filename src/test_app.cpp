@@ -19,7 +19,7 @@ public:
                                      grafix::algo::BSplineCurve>();
 
         proxy->draw();
-        GB_INFO("{}", name_of(*proxy));
+        GB_INFO("{}", proxy->name());
 
         pushLayer(new TestLayer());
     }

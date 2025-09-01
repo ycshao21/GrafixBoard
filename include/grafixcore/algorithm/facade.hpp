@@ -19,16 +19,13 @@ public:
     {
     }
 
-    template <class F, bool IS_DIRECT, class R>
+    template <class P, class R>
     struct accessor
     {
-        friend auto name_of(
-            const std::conditional_t<IS_DIRECT, pro::proxy<F>,
-                                     pro::proxy_indirect_accessor<F>>&
-                self) noexcept -> std::string_view
+        auto name() const noexcept -> std::string_view
         {
             const AlgoReflector& refl =
-                pro::proxy_reflect<IS_DIRECT, R>(pro::access_proxy<F>(self));
+                pro::proxy_reflect<R>(static_cast<const P&>(*this));
             return refl.name;
         }
     };
@@ -41,7 +38,6 @@ struct Drawable
     : pro::facade_builder
     ::add_convention<AlgoMemDraw, void()>
     ::add_convention<AlgoMemSetParams, void(const ByteStream&)>
-    ::add_reflection<AlgoReflector>
     ::add_indirect_reflection<AlgoReflector>
     ::build
 {

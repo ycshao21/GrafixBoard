@@ -26,7 +26,7 @@ target_link_libraries(
     PUBLIC
     Vulkan::Vulkan
     glfw
-    msft_proxy
+    msft_proxy4::proxy
     spdlog::spdlog
     cxxopts::cxxopts
     EnTT::EnTT

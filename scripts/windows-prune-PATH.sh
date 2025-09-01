@@ -12,10 +12,11 @@ echo "[windows-prune-PATH.sh] Pruning PATH environment variable..."
 
 CMAKE_DIR=$(dirname $(which cmake))
 
-# [NOTE] You should modify here to include the paths that are necessary for your build.
+# [NOTE] You should modify here to include the paths that are necessary for 
+#        your build.
 new_path=$(echo "$PATH" | tr ':' '\n' | \
     awk -v IGNORECASE=1 '
-    /(usr\/bin|cuda|windows kits|visual studio)/ {
+    /(usr\/bin|system32|windows kits|visual studio|vcpkg|cuda|powershell)/ {
         if (!seen[$0]++) print
     }' | paste -sd ':' -)
 

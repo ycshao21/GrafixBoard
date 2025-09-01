@@ -6,7 +6,9 @@ void logParams(const grafix::ByteStream& bytes)
     auto nCtrlPoints = bytes.read<uint32_t>();
     spdlog::info("Number of control points: {}", nCtrlPoints);
 
-    std::vector<grafix::algo::BSplineCurve::Point> ctrlPoints(nCtrlPoints);
+    auto ctrlPoints =
+        std::vector<grafix::algo::BSplineCurve::Point>(nCtrlPoints);
+
     bytes.read(ctrlPoints.data(), nCtrlPoints);
     for (const auto& p : ctrlPoints) {
         spdlog::info("({}, {})", p[0], p[1]);
